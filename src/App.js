@@ -11,7 +11,7 @@ function App() {
         <Weather/>
       </main>
       <footer>
-        © Kronans Apotek AB 2019
+      &copy; Kronans Apotek AB {new Date().getFullYear()}
       </footer>
     </div>
   );

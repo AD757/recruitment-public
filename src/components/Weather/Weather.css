@@ -1,29 +1,117 @@
-.textInput {
-    font-size: large;
-    border: 1px solid #EEEEEE;
-    padding: 5px;
-    border-radius: 3px;
-    display: block;
-    margin: 5px auto;
+html,
+body,
+#root {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  background: #fff;
+  color: #000;
 }
 
-.textInput:focus {
-    outline: none;
-    border-color: #719ECE;
-    box-shadow: 0 0 10px rgb(50, 100, 153);
+.main-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.Radio {
-    font-size: small;
+.search {
+  text-align: center;
+  outline: none;
+  padding: 16px;
+  border-radius: 24px;
+  border: none;
+  margin-bottom: 20px;
+  background: rgba(250, 250, 250, 0.85);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.Button {
-    display: block;
-    margin: 10px auto;
-    padding: .5rem;
-    font-size: 1em;
-    background: darkcyan;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
+.button {
+  display: block;
+  margin: 10px auto;
+  padding: 8px;
+  font-size: 16px;
+  background: #e5e5e5;
+  border-radius: 24px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #000;
+  cursor: pointer;
+}
+
+.city {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  width: 250px;
+  border-radius: 24px;
+  background: rgba(250, 250, 250, 0.85);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+p {
+  font-size: 18px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.city-temp {
+  font-size: 5rem;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #3b3b3b;
+  text-align: center;
+}
+
+.city sup {
+  font-size: 16px;
+}
+
+.city-name {
+  font-size: 18px;
+}
+
+.city-name sup {
+  padding: 4px 8px;
+  margin-left: 4px;
+  border-radius: 24px;
+  color: #fff;
+  background: #00c853;
+}
+
+.city-icon {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer {
+  padding: 2px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #eeeeee;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .search {
+    padding: 14px;
+  }
+
+  .city {
+    padding: 20px;
+  }
 }

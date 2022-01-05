@@ -1,41 +1,66 @@
-import React, { useState } from 'react';
-import classes from './Weather.css';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react'
+
+import { fetchWeather } from '../../api/fetchWeather'
+
+import './Weather.css'
 
 const Weather = () => {
+  const [query, setQuery] = useState('')
+  const [weather, setWeather] = useState({})
 
-    let [location, setLocation] = useState();
-    let [currentWeather, setCurrentWeather] = useState({});
-    
-    function getCurrentWeather(e) {
-        e.preventDefault();
-
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=a17480f70f0d4368ad0b5eabd0e37b66`, {
-            "method": "GET"            
-        })
-        .then(response => response.json())
-        .then(response => {
-            setCurrentWeather(response);    
-        });
+  const search = async (e) => {
+    if (e.key === 'Enter') {
+      const data = await fetchWeather(query)
+      setWeather(data)
+      setQuery('')
     }
+  }
 
-    return (
-        <div>
-            <h2>How's the weather out there?</h2>
-            <form onSubmit={getCurrentWeather}>
-                <input
-                    type="text"
-                    placeholder="Enter City"
-                    maxLength="50"
-                    className={classes.textInput}
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    />                
-               
-                <button className={classes.Button} type="submit">Get Weather</button>
-            </form>
-            <div><pre>{JSON.stringify(currentWeather, null, 2) }</pre></div>            
+  const handleSearch = async () => {
+    const data = await fetchWeather(query)
+    setWeather(data)
+  }
+
+  useEffect(() => {
+    handleSearch()
+  }, [])
+
+  return (
+    <div className="main-container">
+      <input
+        type="text"
+        className="search"
+        placeholder="Search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={search}
+      />
+      <button className="button" onClick={handleSearch}>
+        Get Weather
+      </button>
+      {weather.main && (
+        <div className="city">
+          <h2 className="city-name">
+            <span>{weather.name}</span>
+            <sup>{weather.sys.country}</sup>
+          </h2>
+          <div className="city-temp">
+            {Math.round(weather.main.temp)}
+            <sup>&deg;C</sup>
+          </div>
+          <div className="info">
+            <img
+              className="city-icon"
+              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+              alt={weather.weather[0].description}
+            />
+            <p>{weather.weather[0].description}</p>
+          </div>
         </div>
-    )
+      )}
+    </div>
+  )
 }
 
-export default Weather;
+export default Weather
