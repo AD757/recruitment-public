@@ -20,6 +20,7 @@ const Weather = () => {
   const handleSearch = async () => {
     const data = await fetchWeather(query)
     setWeather(data)
+    setQuery('')
   }
 
   useEffect(() => {
